@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.bibliotech.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotech.HelloController" spacing="20.0">
+    <HBox alignment="CENTER" spacing="10.0">
+        <Button text="User" fx:id="userButton"/>
+        <Button text="Add Media" fx:id="addMediaButton"/>
+        <Button text="Search" fx:id="searchButton"/>
+        <Button text="Manage" fx:id="manageButton"/>
+    </HBox>
+
+    <Label text="LIBRARY INVENTORY" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10.0">
+        <VBox spacing="10.0" style="-fx-border-width: 1; -fx-padding: 10;">
+            <TableView fx:id="mediaTable">
+                <columns>
+                    <TableColumn text="Title" fx:id="titleColumn" />
+                    <TableColumn text="Year" fx:id="yearColumn" />
+                    <TableColumn text="Author/Director" fx:id="authorColumn" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox spacing="10.0" style="-fx-border-width: 1; -fx-padding: 10;">
+            <Label text="Enter Media Details" />
+            <GridPane hgap="10.0" vgap="10.0">
+                <Label text="Title:" />
+                <TextField fx:id="titleTextField"/>
+
+                <Label text="Year:" />
+                <TextField fx:id="yearTextField"/>
+
+                <Label text="Author/Director:" />
+                <TextField fx:id="authorTextField"/>
+
+                <Label text="Type:" />
+                <ComboBox fx:id="typeComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Book"/>
+                            <String fx:value="Movie"/>
+                            <String fx:value="Other"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <HBox spacing="10.0">
+                    <Button text="ADD" fx:id="addButton"/>
+                    <Button text="DELETE" fx:id="deleteButton"/>
+                </HBox>
+            </GridPane>
+        </VBox>
+    </HBox>
 </VBox>
