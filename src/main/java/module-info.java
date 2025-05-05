@@ -13,4 +13,6 @@ module com.example.bibliotech {
 
     opens com.example.bibliotech to javafx.fxml;
     exports com.example.bibliotech;
+    exports com.example.bibliotech.medium;
+    opens com.example.bibliotech.medium to javafx.fxml;
 }
