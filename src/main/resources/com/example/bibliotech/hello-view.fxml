@@ -1,66 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ComboBox?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotech.HelloController" spacing="20.0">
+<VBox prefHeight="522.0" prefWidth="591.0" spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotech.HelloController">
     <HBox alignment="CENTER" spacing="10.0">
-        <Button text="User" fx:id="userButton"/>
-        <Button text="Add Media" fx:id="addMediaButton"/>
-        <Button text="Search" fx:id="searchButton"/>
-        <Button text="Manage" fx:id="manageButton"/>
+        <Button fx:id="userButton" text="User" />
+        <Button fx:id="addMediaButton" text="Add Media" />
+        <Button fx:id="searchButton" text="Search" />
+        <Button fx:id="manageButton" text="Manage" />
     </HBox>
-
-    <Label text="LIBRARY INVENTORY" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-
-    <HBox spacing="10.0">
-        <VBox spacing="10.0" style="-fx-border-width: 1; -fx-padding: 10;">
-            <TableView fx:id="mediaTable">
-                <columns>
-                    <TableColumn text="Title" fx:id="titleColumn" />
-                    <TableColumn text="Year" fx:id="yearColumn" />
-                    <TableColumn text="Author/Director" fx:id="authorColumn" />
-                </columns>
-            </TableView>
-        </VBox>
-
-        <VBox spacing="10.0" style="-fx-border-width: 1; -fx-padding: 10;">
-            <Label text="Enter Media Details" />
-            <GridPane hgap="10.0" vgap="10.0">
-                <Label text="Title:" />
-                <TextField fx:id="titleTextField"/>
-
-                <Label text="Year:" />
-                <TextField fx:id="yearTextField"/>
-
-                <Label text="Author/Director:" />
-                <TextField fx:id="authorTextField"/>
-
-                <Label text="Type:" />
-                <ComboBox fx:id="typeComboBox">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Book"/>
-                            <String fx:value="Movie"/>
-                            <String fx:value="Other"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-
-                <HBox spacing="10.0">
-                    <Button text="ADD" fx:id="addButton"/>
-                    <Button text="DELETE" fx:id="deleteButton"/>
+   <HBox alignment="CENTER_LEFT" spacing="20.0">
+      <children>
+      
+          <Label prefHeight="33.0" prefWidth="226.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="LIBRARY INVENTORY">
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+         </Label>
+      </children>
+   </HBox>
+   <SplitPane dividerPositions="0.6754571026722924">
+      <items>
+           <VBox prefHeight="412.0" prefWidth="567.0" spacing="5.0" style="-fx-border-width: 1; -fx-padding: 10;">
+               <TableView fx:id="mediaTable">
+                   <columns>
+                       <TableColumn fx:id="titleColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="141.6000179052353" text="Title" />
+                       <TableColumn fx:id="yearColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="94.39996337890625" text="Year" />
+                       <TableColumn fx:id="authorColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="134.4000244140625" text="Author" />
+                   </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               </TableView>
+           </VBox>
+      
+           <VBox spacing="10.0" style="-fx-border-width: 1; -fx-padding: 10;">
+               <Label text="Enter Media Details" />
+               <GridPane hgap="10.0" vgap="10.0">
+               <VBox>
+                  <children>
+                     <Label prefHeight="18.0" prefWidth="34.0" text="Title:" />
+                     <TextField fx:id="titleTextField1" prefHeight="26.0" prefWidth="308.0" />
+                  </children>
+               </VBox>
+               <VBox layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
+                  <children>
+                     <Label prefHeight="18.0" prefWidth="34.0" text="Title:" />
+                     <TextField fx:id="titleTextField11" prefHeight="26.0" prefWidth="308.0" />
+                  </children>
+               </VBox>
+               <VBox layoutX="10.0" layoutY="59.0" GridPane.rowIndex="2">
+                  <children>
+                     <Label prefHeight="18.0" prefWidth="34.0" text="Title:" />
+                     <TextField fx:id="titleTextField111" prefHeight="26.0" prefWidth="308.0" />
+                  </children>
+               </VBox>
+               <VBox layoutX="10.0" layoutY="100.0" GridPane.rowIndex="3">
+                  <children>
+                     <Label prefHeight="18.0" prefWidth="34.0" text="Title:" />
+                     <TextField fx:id="titleTextField1111" prefHeight="26.0" prefWidth="308.0" />
+                  </children>
+               </VBox>
+               <VBox layoutX="10.0" layoutY="140.0" GridPane.rowIndex="4">
+                  <children>
+                     <Label prefHeight="18.0" prefWidth="34.0" text="Title:" />
+                     <TextField fx:id="titleTextField11111" prefHeight="26.0" prefWidth="308.0" />
+                  </children>
+               </VBox>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+               </rowConstraints>
+               </GridPane>
+      
+                <HBox prefHeight="35.0" prefWidth="274.0" spacing="10.0">
+                    <Button fx:id="addButton" text="ADD" />
+                    <Button fx:id="deleteButton" text="DELETE" />
                 </HBox>
-            </GridPane>
-        </VBox>
-    </HBox>
+           </VBox>
+      </items>
+   </SplitPane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>
