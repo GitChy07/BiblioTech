@@ -1,14 +1,20 @@
 package com.example.bibliotech.medium;
 
-public class DVD extends Medium {
+public class DVD extends AbstractMedium {
+    private int laufzeit;
+    private String fsk;
 
-    public DVD(String name, int erscheinungsjahr, String autor) {
-        super(name, erscheinungsjahr, autor);
+    public DVD(String titel, String autor, int erscheinungsjahr, int laufzeit, String fsk) {
+        super(titel, autor, erscheinungsjahr);
+        this.laufzeit = laufzeit;
+        this.fsk = fsk;
     }
 
-    @Override
-    public String getTyp() {
-        return "DVD";
+    public int getLaufzeit() {
+        return laufzeit;
+    }
+
+    public String getFsk() {
+        return fsk;
     }
 }
-
