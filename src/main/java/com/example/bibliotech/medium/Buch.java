@@ -1,14 +1,20 @@
 package com.example.bibliotech.medium;
 
-public class Buch extends Medium {
+public class Buch extends AbstractMedium {
+    private String isbn;
+    private int seitenanzahl;
 
-    public Buch(String name, int erscheinungsjahr, String autor) {
-        super(name, erscheinungsjahr, autor);
+    public Buch(String titel, String autor, int erscheinungsjahr, String isbn, int seitenanzahl) {
+        super(titel, autor, erscheinungsjahr);
+        this.isbn = isbn;
+        this.seitenanzahl = seitenanzahl;
     }
 
-    @Override
-    public String getTyp() {
-        return "Buch";
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public int getSeitenanzahl() {
+        return seitenanzahl;
     }
 }
-
