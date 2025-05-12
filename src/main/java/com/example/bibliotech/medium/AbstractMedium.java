@@ -4,13 +4,11 @@ public abstract class AbstractMedium implements IMedium {
     private String titel;
     private String autor;
     private int erscheinungsjahr;
-    private boolean istAusgeliehen;
 
     public AbstractMedium(String titel, String autor, int erscheinungsjahr) {
         this.titel = titel;
         this.autor = autor;
         this.erscheinungsjahr = erscheinungsjahr;
-        this.istAusgeliehen = false;
     }
 
     @Override
@@ -28,13 +26,4 @@ public abstract class AbstractMedium implements IMedium {
         return erscheinungsjahr;
     }
 
-    @Override
-    public boolean istAusgeliehen() {
-        return istAusgeliehen;
-    }
-
-    @Override
-    public void setAusgeliehen(boolean ausgeliehen) {
-        istAusgeliehen = ausgeliehen;
-    }
 }

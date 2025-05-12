@@ -1,4 +1,6 @@
-package com.example.bibliotech.medium;
+package com.example.bibliotech;
+
+import com.example.bibliotech.medium.IMedium;
 
 import java.util.ArrayList;
 import java.util.List;
