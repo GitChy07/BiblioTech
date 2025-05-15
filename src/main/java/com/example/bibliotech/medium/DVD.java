@@ -3,7 +3,7 @@ package com.example.bibliotech.medium;
 public class DVD extends AbstractMedium {
     private String fsk;
 
-    public DVD(String titel, String autor, int erscheinungsjahr, int laufzeit, String fsk) {
+    public DVD(String titel, String autor, int erscheinungsjahr) {
         super(titel, autor, erscheinungsjahr);
 
         this.fsk = fsk;
