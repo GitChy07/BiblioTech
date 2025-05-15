@@ -10,6 +10,10 @@ import javafx.scene.control.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -93,7 +97,7 @@ public class HelloController implements Initializable {
         if (buchRB.isSelected()) {
             medium = new Buch(titel, autor, jahr);
         } else if (dvdRB.isSelected()) {
-            medium = new DVD(titel, autor, jahr); // Dauer vorerst fix oder später als Eingabe
+            medium = new DVD(titel, autor, jahr);
         } else {
             System.out.println("Kein Medientyp ausgewählt");
             return;
@@ -104,6 +108,32 @@ public class HelloController implements Initializable {
         AuthorTF.clear();
         YearTF.clear();
     }
+
+    @FXML
+    protected void onDeleteButtonClick() {
+        IMedium ausgewähltesMedium = mediaTable.getSelectionModel().getSelectedItem();
+
+        if (ausgewähltesMedium != null) {
+            Alert bestaetigung = new Alert(AlertType.CONFIRMATION);
+            bestaetigung.setTitle("Löschen bestätigen");
+            bestaetigung.setHeaderText("Medium wirklich löschen?");
+            bestaetigung.setContentText("Möchtest du das Medium \"" + ausgewähltesMedium.getTitel() + "\" wirklich entfernen?");
+
+            // Warten auf die Antwort des Benutzers
+            bestaetigung.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    medienListe.remove(ausgewähltesMedium);
+                }
+            });
+        } else {
+            Alert warnung = new Alert(AlertType.WARNING);
+            warnung.setTitle("Keine Auswahl");
+            warnung.setHeaderText("Kein Medium ausgewählt");
+            warnung.setContentText("Bitte wähle zuerst ein Medium in der Tabelle aus.");
+            warnung.show();
+        }
+    }
+
 
 
 

@@ -81,7 +81,7 @@
 
             <HBox prefHeight="35.0" prefWidth="274.0" spacing="10.0">
                 <Button fx:id="addButton" text="ADD" onAction="#onAddButtonClick"/>
-                <Button fx:id="deleteButton" text="DELETE" />
+                <Button fx:id="deleteButton" text="DELETE" onAction="#onDeleteButtonClick"/>
             </HBox>
         </VBox>
     </SplitPane>
