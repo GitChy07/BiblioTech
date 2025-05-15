@@ -55,6 +55,9 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        medienListe.addAll(Database.getAllMedien());
+        mediaTable.setItems(medienListe);
+
         titleColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTitel()));
         authorColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getAutor()));
         yearColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getErscheinungsjahr()));
@@ -91,15 +94,14 @@ public class HelloController implements Initializable {
             return;
         }
 
-        IMedium medium;
+        IMedium medium = null;
 
         if (buchRB.isSelected()) {
             medium = new Buch(titel, autor, jahr);
+            Database.insertMedium(medium, "Buch");
         } else if (dvdRB.isSelected()) {
             medium = new DVD(titel, autor, jahr);
-        } else {
-            System.out.println("Kein Medientyp ausgewählt");
-            return;
+            Database.insertMedium(medium, "DVD");
         }
 
         medienListe.add(medium);
@@ -122,6 +124,7 @@ public class HelloController implements Initializable {
             bestaetigung.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     medienListe.remove(ausgewähltesMedium);
+                    Database.deleteMedium(ausgewähltesMedium);
                 }
             });
         } else {
