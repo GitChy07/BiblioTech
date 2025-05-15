@@ -37,7 +37,7 @@ public class HelloController implements Initializable {
     public TableColumn<IMedium, String> typColumn;
     public RadioButton buchRB;
     public RadioButton dvdRB;
-    //naim isch sippix
+
     @FXML
     protected void toggleA() {
         if (dvdRB.isSelected()) {
@@ -85,12 +85,20 @@ public class HelloController implements Initializable {
         try {
             jahr = Integer.parseInt(YearTF.getText());
         } catch (NumberFormatException e) {
-            System.out.println("Ungültiges Jahr");
+            Alert warnung = new Alert(AlertType.WARNING);
+            warnung.setTitle("Fehler");
+            warnung.setHeaderText("FEHLER!!!!!");
+            warnung.setContentText("Bitte gültiges Jahr eingeben. dangge duusig!");
+            warnung.show();
             return;
         }
 
         if (titel.isEmpty() || autor.isEmpty()) {
-            System.out.println("Bitte alle Felder ausfüllen");
+            Alert warnung2 = new Alert(AlertType.WARNING);
+            warnung2.setTitle("Fehler");
+            warnung2.setHeaderText("FEHLER!!!!!");
+            warnung2.setContentText("Bitte alle Felder ausfüllen. dangge duusig!");
+            warnung2.show();
             return;
         }
 
@@ -99,15 +107,24 @@ public class HelloController implements Initializable {
         if (buchRB.isSelected()) {
             medium = new Buch(titel, autor, jahr);
             Database.insertMedium(medium, "Buch");
+            medienListe.add(medium);
+            TitleTF.clear();
+            AuthorTF.clear();
+            YearTF.clear();
         } else if (dvdRB.isSelected()) {
             medium = new DVD(titel, autor, jahr);
             Database.insertMedium(medium, "DVD");
+            medienListe.add(medium);
+            TitleTF.clear();
+            AuthorTF.clear();
+            YearTF.clear();
+        } else {
+            Alert warnung3 = new Alert(AlertType.WARNING);
+            warnung3.setTitle("Fehler");
+            warnung3.setHeaderText("FEHLER!!!!!");
+            warnung3.setContentText("Bitte Medium auswählen. dangge duusig!");
+            warnung3.show();
         }
-
-        medienListe.add(medium);
-        TitleTF.clear();
-        AuthorTF.clear();
-        YearTF.clear();
     }
 
     @FXML
@@ -117,8 +134,8 @@ public class HelloController implements Initializable {
         if (ausgewähltesMedium != null) {
             Alert bestaetigung = new Alert(AlertType.CONFIRMATION);
             bestaetigung.setTitle("Löschen bestätigen");
-            bestaetigung.setHeaderText("Medium wirklich löschen?");
-            bestaetigung.setContentText("Möchtest du das Medium \"" + ausgewähltesMedium.getTitel() + "\" wirklich entfernen?");
+            bestaetigung.setHeaderText("Medium entfernen");
+            bestaetigung.setContentText("Medium \"" + ausgewähltesMedium.getTitel() + "\" löschen?");
 
             // Warten auf die Antwort des Benutzers
             bestaetigung.showAndWait().ifPresent(response -> {
