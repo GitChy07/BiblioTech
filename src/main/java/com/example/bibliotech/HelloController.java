@@ -37,8 +37,7 @@ public class HelloController implements Initializable {
     public TableColumn<IMedium, String> typColumn;
     public RadioButton buchRB;
     public RadioButton dvdRB;
-
-
+    //naim isch sippix
     @FXML
     protected void toggleA() {
         if (dvdRB.isSelected()) {
