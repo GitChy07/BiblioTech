@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/bibliothek";
-    private static final String USER = "m226_test";     // z. B. root
-    private static final String PASSWORD = "pw_m226_test";     // z. B. root
+    private static final String USER = "root";     // z. B. root
+    private static final String PASSWORD = "";     // z. B. root
 
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);

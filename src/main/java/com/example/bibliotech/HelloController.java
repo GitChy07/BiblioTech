@@ -20,24 +20,30 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
 
-    private ObservableList<IMedium> medienListe = FXCollections.observableArrayList();
+    private final ObservableList<IMedium> medienListe = FXCollections.observableArrayList();
 
     public Button addMediaButton;
     public Button searchButton;
     public Button manageButton;
-    public Button addButton;
-    public Button deleteButton;
-    public TextField YearTF;
-    public TextField AuthorTF;
-    public TextField TitleTF;
+
     public TableView<IMedium> mediaTable;
+
     public TableColumn<IMedium, String> titleColumn;
     public TableColumn<IMedium, String> authorColumn;
     public TableColumn<IMedium, Integer> yearColumn;
     public TableColumn<IMedium, String> typColumn;
+
+    public TextField YearTF;
+    public TextField AuthorTF;
+    public TextField TitleTF;
     public RadioButton buchRB;
     public RadioButton dvdRB;
-    //naim isch sippix
+
+    public Button addButton;
+    public Button deleteButton;
+
+    public Label errorLabel;
+
     @FXML
     protected void toggleA() {
         if (dvdRB.isSelected()) {
@@ -77,20 +83,42 @@ public class HelloController implements Initializable {
 
 
     @FXML
+
     protected void onAddButtonClick() {
         String titel = TitleTF.getText();
         String autor = AuthorTF.getText();
         int jahr;
 
+        if (titel.isEmpty() || autor.isEmpty() || YearTF.getText().isEmpty()) {
+            if (!YearTF.getText().isEmpty()) {
+                try {
+                    Integer.parseInt(YearTF.getText());
+                } catch (NumberFormatException e) {
+                    System.out.println("Ungültiges Jahr");
+                    errorLabel.setText("Ungültiges Jahr");
+                    return;
+                }
+                return;
+            } else {
+                System.out.println("Bitte alle Felder ausfüllen");
+                errorLabel.setText("Bitte alle Felder ausfüllen");
+                return;
+            }
+        }
+
         try {
-            jahr = Integer.parseInt(YearTF.getText());
+            Integer.parseInt(YearTF.getText());
         } catch (NumberFormatException e) {
             System.out.println("Ungültiges Jahr");
+            errorLabel.setText("Ungültiges Jahr");
             return;
         }
 
-        if (titel.isEmpty() || autor.isEmpty()) {
-            System.out.println("Bitte alle Felder ausfüllen");
+        jahr = Integer.parseInt(YearTF.getText());
+
+        if (jahr == 0) {
+            System.out.println("Ungültiges Jahr");
+            errorLabel.setText("Ungültiges Jahr");
             return;
         }
 
@@ -102,12 +130,18 @@ public class HelloController implements Initializable {
         } else if (dvdRB.isSelected()) {
             medium = new DVD(titel, autor, jahr);
             Database.insertMedium(medium, "DVD");
+        } else {
+            System.out.println("Medien Typ auswählen");
+            errorLabel.setText("Medien Typ auswählen");
+            return;
         }
 
         medienListe.add(medium);
         TitleTF.clear();
         AuthorTF.clear();
         YearTF.clear();
+        errorLabel.setText("");
+
     }
 
     @FXML

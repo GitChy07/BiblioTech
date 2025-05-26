@@ -16,7 +16,6 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    //naim isch sippix
 
     public static void main(String[] args) {
         launch();
