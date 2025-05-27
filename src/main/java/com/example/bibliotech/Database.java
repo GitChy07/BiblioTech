@@ -2,7 +2,6 @@ package com.example.bibliotech;
 
 import com.example.bibliotech.medium.Buch;
 import com.example.bibliotech.medium.DVD;
-import com.example.bibliotech.medium.IMedium;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,8 +9,8 @@ import java.util.List;
 
 public class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/bibliothek";
-    private static final String USER = "root";     // z. B. root
-    private static final String PASSWORD = "";     // z. B. root
+    private static final String USER = "m226_test";
+    private static final String PASSWORD = "pw_m226_test";
 
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);

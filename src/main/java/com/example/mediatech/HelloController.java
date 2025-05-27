@@ -1,6 +1,12 @@
-package com.example.bibliotech;
-import com.example.bibliotech.medium.Buch;
-import com.example.bibliotech.medium.DVD;
+package com.example.mediatech;
+
+/* ! */
+    import com.example.mediatech.medium.AbstractMedium;
+//  import com.example.mediatech.medium.AbstractMedium;
+/* ! */
+
+import com.example.mediatech.medium.Buch;
+import com.example.mediatech.medium.DVD;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
@@ -19,18 +25,17 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
 
-    private final ObservableList<IMedium> medienListe = FXCollections.observableArrayList();
-
     public Button addMediaButton;
     public Button searchButton;
     public Button manageButton;
 
-    public TableView<IMedium> mediaTable;
+    public TableView<AbstractMedium> mediaTable;
+    private final ObservableList<AbstractMedium> medienListe = FXCollections.observableArrayList();
 
-    public TableColumn<IMedium, String> titleColumn;
-    public TableColumn<IMedium, String> authorColumn;
-    public TableColumn<IMedium, Integer> yearColumn;
-    public TableColumn<IMedium, String> typColumn;
+    public TableColumn<AbstractMedium, String> titleColumn;
+    public TableColumn<AbstractMedium, String> authorColumn;
+    public TableColumn<AbstractMedium, Integer> yearColumn;
+    public TableColumn<AbstractMedium, String> typColumn;
 
     public TextField YearTF;
     public TextField AuthorTF;
@@ -60,7 +65,6 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        medienListe.addAll(Database.getAllMedien());
         mediaTable.setItems(medienListe);
 
         titleColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getTitel()));
@@ -80,9 +84,7 @@ public class HelloController implements Initializable {
         mediaTable.setItems(medienListe);
     }
 
-
     @FXML
-
     protected void onAddButtonClick() {
         String titel = TitleTF.getText();
         String autor = AuthorTF.getText();
@@ -121,14 +123,12 @@ public class HelloController implements Initializable {
             return;
         }
 
-        IMedium medium = null;
+        AbstractMedium medium = null;
 
         if (buchRB.isSelected()) {
             medium = new Buch(titel, autor, jahr);
-            Database.insertMedium(medium, "Buch");
         } else if (dvdRB.isSelected()) {
             medium = new DVD(titel, autor, jahr);
-            Database.insertMedium(medium, "DVD");
         } else {
             System.out.println("Medien Typ auswählen");
             errorLabel.setText("Medien Typ auswählen");
@@ -145,7 +145,7 @@ public class HelloController implements Initializable {
 
     @FXML
     protected void onDeleteButtonClick() {
-        IMedium ausgewähltesMedium = mediaTable.getSelectionModel().getSelectedItem();
+        AbstractMedium ausgewähltesMedium = mediaTable.getSelectionModel().getSelectedItem();
 
         if (ausgewähltesMedium != null) {
             Alert bestaetigung = new Alert(AlertType.CONFIRMATION);
@@ -157,7 +157,6 @@ public class HelloController implements Initializable {
             bestaetigung.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     medienListe.remove(ausgewähltesMedium);
-                    Database.deleteMedium(ausgewähltesMedium);
                 }
             });
         } else {
@@ -168,8 +167,5 @@ public class HelloController implements Initializable {
             warnung.show();
         }
     }
-
-
-
 
 }

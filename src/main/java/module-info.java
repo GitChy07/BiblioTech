@@ -1,4 +1,4 @@
-module com.example.bibliotech {
+module com.example.mediatech {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,10 +10,7 @@ module com.example.bibliotech {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
-    requires java.sql;
 
-    opens com.example.bibliotech to javafx.fxml;
-    exports com.example.bibliotech;
-    exports com.example.bibliotech.medium;
-    opens com.example.bibliotech.medium to javafx.fxml;
+    opens com.example.mediatech to javafx.fxml;
+    exports com.example.mediatech;
 }
